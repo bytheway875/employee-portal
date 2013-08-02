@@ -8,6 +8,7 @@ class Message < ActiveRecord::Base
 
   def deliver!(sending:nil, receiving:nil)
     raise ArgumentError, "both sender and receiver must be specified" unless sending && receiving
-
+    self.sender = sending
+    self.recipient = receiving
   end
 end
