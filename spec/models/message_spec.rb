@@ -10,7 +10,7 @@ describe Message do
         before(:each) do
           message.deliver! sending:sender, receiving:recipient
         end
-        
+
         it 'should set the sender of the message' do 
           expect(message.sender).to eq(sender)
         end
@@ -20,7 +20,9 @@ describe Message do
 
         end
 
-        it 'should persist the message to the database'
+        it 'should persist the message to the database' do
+          expect(message.persisted?).to be_true
+        end
       end
 
       context 'when neither the sender or recipient is specified' do

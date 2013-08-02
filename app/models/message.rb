@@ -7,8 +7,9 @@ class Message < ActiveRecord::Base
   scope :unread, -> { where(read: false) }
 
   def deliver!(sending:nil, receiving:nil)
-    raise ArgumentError, "both sender and receiver must be specified" unless sending && receiving
+     raise ArgumentError, "both sender and receiver must be specified" unless sending && receiving
     self.sender = sending
     self.recipient = receiving
+    self.save
   end
 end
