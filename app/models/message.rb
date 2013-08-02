@@ -5,4 +5,9 @@ class Message < ActiveRecord::Base
   belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
 
   scope :unread, -> { where(read: false) }
+
+  def deliver!(sending:nil, receiving:nil)
+    raise ArgumentError, "both sender and receiver must be specified" unless sending && receiving
+
+  end
 end
